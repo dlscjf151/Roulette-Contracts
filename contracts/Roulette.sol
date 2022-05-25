@@ -24,7 +24,7 @@ contract Roulette is Ownable {
     uint256 private _withdrawableAmount;
 
     event Bet(address indexed player, uint256 betAmount, uint256 betNumber, uint256 requestId);
-    event Reveal(address indexed player, uint256 betNumber, uint256 randomNumber, uint256 prize);
+    event Reveal(address indexed player, uint256 betNumber, uint256 randomNumber, uint256 betAmount, uint256 prize);
 
     constructor(address VRFv2ConsumerAddress){
         _VRFv2Consumer = VRFv2Consumer(VRFv2ConsumerAddress);
@@ -80,7 +80,7 @@ contract Roulette is Ownable {
             _withdrawableAmount = _withdrawableAmount.add(_states[msg.sender].betAmount);
         }
 
-        emit Reveal(_states[msg.sender].player, _states[msg.sender].betNumber, randomRanged, prize);
+        emit Reveal(_states[msg.sender].player, _states[msg.sender].betNumber, randomRanged, _states[msg.sender].betAmount, prize);
 
         _states[msg.sender].player = address(0);
         _states[msg.sender].betNumber = 0;
