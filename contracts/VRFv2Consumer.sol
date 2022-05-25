@@ -12,10 +12,10 @@ contract VRFv2Consumer is VRFConsumerBaseV2, Ownable {
     uint64 private _subscriptionId;
 
     // Fuji coordinator
-    address private _vrfCoordinator = 0x2eD832Ba664535e5886b75D64C46EB9a228C2610;
+    address private _vrfCoordinator = 0x6168499c0cFfCaCD319c818142124B7A15E857ab;
 
     // The gas lane to use, which specifies the maximum gas price to bump to
-    bytes32 private _keyHash = 0x354d2f95da55398f44b7cff77da56283d9c6c829a4bdf1bbcaf2ad6a4d081f61;
+    bytes32 private _keyHash = 0xd89b2bf150e3b9e13446986e571fb9cab24b13cea0a43ea20a6049a85cc807cc;
 
     // Depends on the number of requested values that you want sent to the
     // fulfillRandomWords() function. Storing each word costs about 20,000 gas,

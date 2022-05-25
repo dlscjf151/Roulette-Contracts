@@ -3,11 +3,11 @@ const HDWalletProvider = require("@truffle/hdwallet-provider");
 const privateKeys = require('./privateKeys');
 
 const protocol = "https";
-const ip = "api.avax-test.network";
+const ip = "rinkeby.infura.io";
 const port = 443;
 Web3.providers.HttpProvider.prototype.sendAsync = Web3.providers.HttpProvider.prototype.send;
 const provider = new Web3.providers.HttpProvider(
-    `${protocol}://${ip}:${port}/ext/bc/C/rpc`
+    `${protocol}://${ip}:${port}/v3/e4aee85aa3a44853ad7da30dfd5e9c21`
 );
 
 

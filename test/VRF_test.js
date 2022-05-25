@@ -4,12 +4,13 @@ const VRFv2Consumer = artifacts.require("VRFv2Consumer");
 contract("VRFv2Consumer", async accounts => {
     let blockNumber;
     let requestId;
+
     it("should emit event in requestRandomWords function", async () => {
         let _VRFv2Consumer = await VRFv2Consumer.deployed();
         // await _VRFv2Consumer.setContractAddress(accounts[0]);
         let {tx, receipt} = await _VRFv2Consumer.requestRandomWords();
-        blockNumber = tx.receipt.blockNumber;
-        let events = receipt.logs
+        blockNumber = receipt.blockNumber;
+        let events = receipt.rawLogs
         expect(events.length).to.equal(1);
         requestId = events[0].data.substring(0, 66);
     })

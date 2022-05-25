@@ -22,7 +22,7 @@ contract("Roulette", async accounts => {
         blockNumber = receipt.blockNumber;
         await expectEvent.inTransaction(tx, roulette, 'Bet');
         let log = receipt.logs[0]
-        requestId = '0x' + log.args.requestId.toString(16);
+        requestId = '0x' + web3.utils.leftPad(log.args.requestId.toString(16), 64, '0');
         console.log(requestId)
     })
 
@@ -46,13 +46,10 @@ contract("Roulette", async accounts => {
 
         let _VRFv2Consumer = await VRFv2Consumer.deployed()
         let random = await _VRFv2Consumer.getRandom.call(requestId)
-        console.log(random, random % 2);
 
         let {tx, receipt} = await roulette.reveal({from: accounts[0]});
-        console.log(receipt)
         let logs = receipt.logs
         expect(events.length).to.equal(1);
-        console.log(logs)
     })
 })
 
