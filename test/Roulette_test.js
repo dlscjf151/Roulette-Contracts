@@ -20,10 +20,8 @@ contract("Roulette", async accounts => {
         let roulette = await Roulette.deployed();
         let {tx, receipt} = await roulette.bet(1, {from: accounts[0], value: web3.utils.toWei('0.0001', 'ether')});
         blockNumber = receipt.blockNumber;
-        // console.log(receipt)
         await expectEvent.inTransaction(tx, roulette, 'Bet');
         let log = receipt.logs[0]
-        // console.log(log.args)
         requestId = '0x' + log.args.requestId.toString(16);
         console.log(requestId)
     })

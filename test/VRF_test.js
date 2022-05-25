@@ -7,9 +7,8 @@ contract("VRFv2Consumer", async accounts => {
     it("should emit event in requestRandomWords function", async () => {
         let _VRFv2Consumer = await VRFv2Consumer.deployed();
         // await _VRFv2Consumer.setContractAddress(accounts[0]);
-        let transaction = await _VRFv2Consumer.requestRandomWords();
-        blockNumber = transaction.receipt.blockNumber;
-        let receipt = await web3.eth.getTransactionReceipt(transaction.tx)
+        let {tx, receipt} = await _VRFv2Consumer.requestRandomWords();
+        blockNumber = tx.receipt.blockNumber;
         let events = receipt.logs
         expect(events.length).to.equal(1);
         requestId = events[0].data.substring(0, 66);
